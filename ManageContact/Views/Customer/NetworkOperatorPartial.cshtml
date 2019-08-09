@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ManageContact.Models.NetworkOperator>
+
+
+@foreach (var item in Model)
+{
+
+<input type="button" value="@item.NetworkOperatorName" class="btn btn-default" onclick="location.href='@Url.Action("CustomerHome", "Customer",new { idNetWorkOperator = item.IDNetworkOperator })'" />
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ManageContact.Models.NetworkOperator>
+
+@{
+    ViewBag.Title = "NetworkOperator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Network Operator</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateNetworkOperator", "NetworkOperator")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NetworkOperatorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NetworkOperatorAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetworkOperatorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetworkOperatorAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditNetworkOperator", new { id=item.IDNetworkOperator }) |
+            @Html.ActionLink("Delete", "DeleteNetworkOperator", new { id=item.IDNetworkOperator })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ManageContact.Models.Position>
+
+@{
+    ViewBag.Title = "Position";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Position</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreatePosition", "Position")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PositionAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditPosition", new { id=item.IDPosition }) |
+            @Html.ActionLink("Delete", "DeletePosition", new { id=item.IDPosition })
+        </td>
+    </tr>
+}
+
+</table>

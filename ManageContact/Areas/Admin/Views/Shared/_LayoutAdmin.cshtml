@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <link href="~/Content/Css/StyleCustomer.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+            integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+
+
+    <title>Selftaught</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#" onclick="location.href='@Url.Action("AdminHome", "Admin")'" style="font-size: 150%; margin-right: 50px; margin-bottom: 5px;">Selftaught</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="@Url.Action("AdminHome", "Admin")" class="nav-link">
+                        Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Customer", "AdminHome", "Admin", "", new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Sign Up", "SignUpAdmin", "Admin", "", new { @class = "nav-link" })
+                </li>
+
+                <li class="nav-item">
+                    @Html.ActionLink("My Profile", "MyProfile", "Admin", "", new { @class = "nav-link" })
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Logout", "Login", new { area = string.Empty })" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i>Logout[@Session["Username"]]
+
+                    </a>
+
+
+
+                </li>
+            </ul>
+            @using (Html.BeginForm("AdminHome", "Admin", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
+            {
+
+                <input class="form-control mr-sm-2" type="text" name="idSearch" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            }
+        </div>
+    </nav>
+
+    <main role="main">
+
+
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Hello Admin, @Session["AdminName"].ToString()!</h1>
+                <p>
+                    Your information is being best kept confidential in us. You always use it easily and quickly, we guarantee.
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+
+
+        <div class="container">
+
+
+
+
+                    @RenderBody()
+
+
+            <hr>
+        </div>
+
+    </main>
+
+    <footer class="container">
+        <p>&copy; Selftaught Team 2017-2019</p>
+    </footer>
+
+
+</body>
+</html>

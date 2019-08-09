@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ManageContact.Models.CustomerModel>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Customer List</h3>
+<br />
+
+@if (Request.QueryString["message"] != null)
+{<br />
+    <div class="alert alert-success" role="alert">@Request.QueryString["message"]</div>
+
+}
+<table class="table">
+    <tr>
+        <th>No</th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactQuantity)
+        </th>
+        <th></th>
+    </tr>
+    @{
+        int temp = 0;}
+    @foreach (var item in Model)
+    {
+        temp++;
+        <tr>
+
+            <td>@temp.ToString()</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactQuantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditCustomer", new { id = item.IDCustomer }) |
+                @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.IDCustomer })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager((PagedList.IPagedList)Model, page => Url.Action("AdminHome", new { page }))

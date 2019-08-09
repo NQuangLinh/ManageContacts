@@ -1,0 +1,52 @@
+﻿@model ManageContact.Models.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign in</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <link href="~/Content/Css/StyleLogin.css" rel="stylesheet" />
+</head>
+<body class="text-center">
+    <div class="form-signin">
+
+        <img class="mb-4" src="~/Content/Image/logo2.png" alt="logo" style="width:80%" onclick="location.href='@Url.Action("SignUp", "Signup")'" />
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        @if (Request.QueryString["message"] != null)
+        {
+            <div class="alert alert-success" role="alert">@Request.QueryString["message"]</div>
+
+        }
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger", @role = "alert" })
+
+                        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "sr-only", @for = "inputUsername" })
+                        @Html.TextBoxFor(model => model.Username, htmlAttributes: new { @id = "inputUsername", @class = "form-control", @type = "text", @placeholder = "User name" , @required = "", @autofocus = "" })
+                        @Html.ValidationMessageFor(model => model.Username)
+
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "sr-only", @for = "inputPassword" })
+                        @Html.PasswordFor(model => model.Password, htmlAttributes: new { @id = "inputPassword", @class = "form-control", @type = "password", @placeholder = "Password", @required = "", @autofocus = "" })
+                        @Html.ValidationMessageFor(model => model.Password)
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">© 2017 - 2019 by Selftaught Team.</p>
+
+
+        }
+    </div>
+</body>
+</html>

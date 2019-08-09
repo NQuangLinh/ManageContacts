@@ -1,0 +1,226 @@
+﻿@model ManageContact.Models.Users
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <link href="~/Content/Css/grid.css" rel="stylesheet" />
+    <link href="~/Content/Css/StylesSignup.css" rel="stylesheet" />
+
+    <title>Selftaught</title>
+</head>
+<body>
+
+    <header id="home">
+        <nav>
+            <a href="#home"><img class="logo" src="~/Content/Image/logo.png" alt="logo"></a>
+            <ul class="main-nav">
+                <li><a href="#section">Sign Up</a></li>
+                <li>@Html.ActionLink("Login", "Login", "Login")</li>
+                <li><a href="#section">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="heading-main-box">
+                <h1>
+
+                    Security is our <br /> reputation and <br /> top criteria
+                </h1>
+                <a href="#section" class="btn">Tell me more</a>
+                <a href="#section" class="btn">Join us</a>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <div class="about-section" id="section">
+        <div class="contact-section">
+            <div class="row">
+                <div class="col span-1-of-3">
+                    <ul class="information">
+                        <li><i class="fas fa-map-marker-alt"></i>Address: 20A, Selftaught street, DN.</li>
+                        <li><i class="fas fa-envelope"></i>Email: selftaughtteam@gmail.com</li>
+                        <li><i class="fas fa-phone"></i>Phone: 037-277-2298</li>
+                    </ul>
+                    <ul class="social-icons">
+                        <li><i class="fab fa-facebook"></i></li>
+                        <li><i class="fab fa-twitter-square"></i></li>
+                        <li><i class="fab fa-instagram"></i></li>
+                        <li><i class="fab fa-google-plus-square"></i></li>
+                    </ul>
+                </div>
+                <div class="col span-2-of-3">
+                    <div class="signup">
+                        <div class="row">
+                            <h2 style="margin-left: 40px; padding-bottom: 20px; color:white;">Sign Up</h2>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                        @using (Html.BeginForm("SignUp", "Signup", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+
+                                    @Html.TextBoxFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+                                    @Html.RadioButtonFor(model => model.Gender, "True") <b class="gender">Male</b>
+                                    @Html.RadioButtonFor(model => model.Gender, "False")  <b class="gender">Female</b> 
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+
+                                    @Html.TextBoxFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+                                    @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+                                    @Html.TextBoxFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+                                    @Html.TextBoxFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+                                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col span-2-of-5">
+                                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                                </div>
+                                <div class="col span-3-of-5">
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <input type="submit" value="Create" class="btn" />
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>
+            Copyright &copy; @DateTime.Now.Year by Selftaught Team.
+        </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.0.js"
+            integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+            crossorigin="anonymous"></script>
+    <script src="~/Content/Js/scripts.js"></script>
+    <script src="~/Content/Js/jquery.waypoints.min.js"></script>
+
+</body>
+</html>

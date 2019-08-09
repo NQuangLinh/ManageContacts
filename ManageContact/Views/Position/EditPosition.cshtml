@@ -1,0 +1,38 @@
+﻿@model ManageContact.Models.Position
+
+@{
+    ViewBag.Title = "EditPosition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Position</h2>
+
+@using (Html.BeginForm("EditPosition", "Position", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IDPosition)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PositionName, "Position Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PositionName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PositionName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Position","Position")
+</div>

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ManageContact.Models.ContactsModel>
+  @using PagedList.Mvc;
+@{
+    ViewBag.Title = "Selftaught";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+
+@if (Request.QueryString["message"] != null)
+{   <br />
+    <div class="alert alert-success" role="alert">@Request.QueryString["message"]</div>
+
+}
+<p>
+    @Html.ActionLink("Create Contact", "CreateContact", "Customer", "", new { @class = "btn btn-success", @style = "border: 1px solid #99caf8; border-radius: 8px; padding: 10px;  color: white; text-decoration: none;" })
+</p>
+
+<form action="@Url.Action("DeleteContacts","Customer")" method="post">
+    <table class="table  table-hover">
+        <tr>
+            <th>No</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.NetworkOperatorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PositionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateTime)
+            </th>
+            <th>
+                <input type="checkbox" id="checkall" />
+            </th>
+        </tr>
+        @{
+            int temp = 0;}
+        @foreach (var item in Model)
+        {
+
+            temp++;
+        
+        <tr>
+           
+                <td>@temp.ToString()</td>
+
+
+                <td>
+                    <a href="@Url.Action("EditContact", "Customer",new { idContact = item.IDContact })" style="text-decoration: none; color: black;">
+                        @Html.DisplayFor(modelItem => item.ContactName)
+                        </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("EditContact", "Customer",new { idContact = item.IDContact })" style="text-decoration: none; color: black;">
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("EditContact", "Customer",new { idContact = item.IDContact })" style="text-decoration: none; color: black;">
+                        @Html.DisplayFor(modelItem => item.NetworkOperatorName)
+                    </a>
+                </td>
+                <td>
+                    <a href="@Url.Action("EditContact", "Customer",new { idContact = item.IDContact })" style="text-decoration: none; color: black;">
+                        @Html.DisplayFor(modelItem => item.AddressName)
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("EditContact", "Customer",new { idContact = item.IDContact })" style="text-decoration: none; color: black;">
+                        @Html.DisplayFor(modelItem => item.PositionName)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateTime)
+                </td>
+                <td class="text-center">
+                    <input name="deletelist" type="checkbox" value="@item.IDContact" />
+                </td>
+            
+        </tr>
+       
+        }
+
+    </table>
+    @Html.PagedListPager((PagedList.IPagedList)Model, page => Url.Action("CustomerHome",new { page}))
+    <br />
+    <div class="text-center">
+
+        <input type="button" class="btn btn-warning" value="Edit"
+               onclick="return confirm('Please select the item you want to edit.')" />
+        <input type="submit" class="btn btn-danger" value="Delete"
+               onclick="return confirm('Confirm deleting the selected contact objects?')" />
+
+    </div>
+</form>
+
+

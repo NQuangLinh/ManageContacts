@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ManageContact.Models.Address>
+
+@{
+    ViewBag.Title = "Address";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Address</h2>
+
+<p>
+    @Html.ActionLink("Create Address", "CreateAddress","Address")
+</p>
+<table class="table" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditAddress", new { id=item.IDAddress }) |
+            @Html.ActionLink("Delete", "DeleteAddress", new { id=item.IDAddress })
+        </td>
+    </tr>
+}
+
+</table>

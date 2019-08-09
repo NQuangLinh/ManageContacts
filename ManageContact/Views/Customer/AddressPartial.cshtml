@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ManageContact.Models.Address>
+
+
+
+    @foreach (var item in Model)
+    {
+
+        @Html.ActionLink(@item.AddressName, "CustomerHome", "Customer", new { idAddress = item.IDAddress }, new { @class = "list-group-item" })
+    }
+
+@Html.ActionLink("Unknown","CustomerHome","Customer",new {idUnknow = "Unknow" }, new { @class = "list-group-item" })
